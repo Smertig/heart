@@ -178,9 +178,8 @@ public:
 	}
 
 	bool Has(int32_t id) const {
-		for (const Node& node : _nodes) {
-			if (node.GetId() == id) return true;
-		}
-		return false;
+		return std::any_of(_nodes.begin(), _nodes.end(), [id](const Node& node) {
+			return node.GetId() == id;
+		});
 	}
 };
